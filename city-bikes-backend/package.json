@@ -4,8 +4,20 @@
   "description": "Backend for Helsinki City Bikes App",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "lint": "eslint --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juho Poutiainen",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  }
 }
