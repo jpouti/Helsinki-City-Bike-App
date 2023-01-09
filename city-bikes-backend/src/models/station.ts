@@ -1,6 +1,7 @@
-import { Schema, model } from 'mongoose'
+const { Model, DataTypes } = require('sequelize')
+const { sequelize } = require('../utils/db')
 
-interface IStation {
+export interface IStation {
     id: number
     nimi: string
     namn: string
@@ -12,22 +13,29 @@ interface IStation {
     operaattori: string
     kapasiteetti: number
     xCoord: number
-    yCoor: number
+    yCoord: number
 }
 
-const stationSchema = new Schema<IStation>({
-    id: { type: Number, required: true },
-    nimi: { type: String, required: true },
-    namn: { type: String, required: true },
-    name: { type: String, required: true },
-    osoite: { type: String, required: true },
-    adress: { type: String, required: true },
-    kaupunki: { type: String, required: true },
-    stad: { type: String, required: true },
-    operaattori: { type: String, required: true },
-    kapasiteetti: { type: Number, required: true },
-    xCoord: { type: Number, required: true },
-    yCoor: { type: Number, required: true },
+class Station extends Model {}
+
+Station.init({
+    id: { type: DataTypes.INTEGER, allowNull: false, unique: true, primaryKey: true },
+    nimi: { type: DataTypes.TEXT, allowNull: false },
+    namn: { type: DataTypes.TEXT, allowNull: false },
+    name: { type: DataTypes.TEXT, allowNull: false },
+    osoite: { type: DataTypes.TEXT, allowNull: false },
+    adress: { type: DataTypes.TEXT, allowNull: false },
+    kaupunki: { type: DataTypes.TEXT, allowNull: false },
+    stad: { type: DataTypes.TEXT, allowNull: false },
+    operaattori: { type: DataTypes.TEXT, allowNull: false },
+    kapasiteetti: { type: DataTypes.TEXT, allowNull: false },
+    xCoord: { type: DataTypes.FLOAT, allowNull: false },
+    yCoord: { type: DataTypes.FLOAT, allowNull: false },
+}, {
+    sequelize,
+    underscored: true,
+    timestamps: false,
+    modelName: 'station'
 })
 
-module.exports = model('Station', stationSchema)
+module.exports = Station

@@ -1,6 +1,7 @@
-import { Schema, model } from 'mongoose'
+const { Model, DataTypes } = require('sequelize')
+const { sequelize } = require('../utils/db')
 
-interface IJourney {
+export interface IJourney {
     departure: Date
     return: Date
     departureStationId: number
@@ -11,15 +12,22 @@ interface IJourney {
     duration: number
 }
 
-const journeySchema = new Schema<IJourney>({
-    departure: { type: Date, required: true },
-    return: { type: Date, required: true },
-    departureStationId: { type: Number, required: true },
-    departureStationName: { type: String, required: true },
-    returnStationId: { type: Number, required: true },
-    returnStationName: { type: String, required: true },
-    distance: { type: Number, min: [10, 'Only journeys longer than 10 meters are valid'], required: true },
-    duration: { type: Number, min: [10, 'Only journeys longer than 10 seconds are valid'], required: true },
+class Journey extends Model {}
+
+Journey.init({
+    departure: { type: DataTypes.DATE, allowNull: false },
+    return: { type: DataTypes.DATE, allowNull: false },
+    departureStationId: { type: DataTypes.INTEGER, allowNull: false, references: { model: 'stations', key: 'id' } },
+    departureStationName: { type: DataTypes.TEXT, allowNull: false },
+    returnStationId:  { type: DataTypes.INTEGER, allowNull: false, references: { model: 'stations', key: 'id' } },
+    returnStationName: { type: DataTypes.TEXT, allowNull: false },
+    distance: { type: DataTypes.FLOAT, allowNull: false, validate: { min: { args: 10, msg: 'Journeys must be longer than 10 (m'} } },
+    duration: { type: DataTypes.FLOAT, allowNull: false, validate: { min: { args: 10, msg: 'Journeys must be longer than 10 (m' } } },
+}, {
+    sequelize,
+    underscored: true,
+    timestamps: false,
+    modelName: 'journey'
 })
 
-module.exports = model('Journey', journeySchema)
+module.exports = Journey
