@@ -2,9 +2,11 @@ require("dotenv").config()
 
 const PORT = process.env.PORT || 3001
 
-const MONGO_URL = process.env.MONGO_URL
+const DATABASE_URL = process.env.DATABASE_URL
 
 module.exports = {
     PORT,
-    MONGO_URL
+    DATABASE_URL
 }
+
+export {}
