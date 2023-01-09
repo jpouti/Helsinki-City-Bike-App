@@ -8,6 +8,7 @@
     "ts-node": "ts-node",
     "dev": "ts-node-dev src/index.ts",
     "lint": "eslint --ext .ts",
+    "seed:stations": "ts-node seeds/seedStations.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juho Poutiainen",
