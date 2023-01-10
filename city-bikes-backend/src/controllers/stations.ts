@@ -2,19 +2,18 @@ import express from "express"
 
 const router = express.Router()
 
-const Journey = require('../models/journey')
+const Station = require('../models/station')
 
-// get journeys on default 10 journeys per page
-// default view/order -> latest bike returns
+// get stations on default 10 stations per page
+// default view/order -> ASC by station id
 router.get('/', async (req, res) => {
 
     const page = parseInt(req.query.page as string) || 1
     const limit = parseInt(req.query.limit as string) || 10
     const conditions = {}
     try {
-        const result = await Journey.findAll({
-            attributes: { exclude: ['id'] },
-            order: [['return', 'DESC']],
+        const result = await Station.findAll({
+            order: [['id', 'ASC']],
             offset: limit * (page - 1),
             limit: limit,
             where: conditions,
@@ -22,7 +21,7 @@ router.get('/', async (req, res) => {
         res.json(result)
 
     } catch (error:any) {
-        res.status(400).json({ error: 'Error while getting journeys..: ' + error.message})
+        res.status(400).json({ error: 'Error while getting stations..: ' + error.message})
     }
 })
 
