@@ -8,6 +8,7 @@ const Station = require('../models/station')
 declare module 'express' {
     export interface Request {
         station?: IStation
+        error?: string
     }
 }
 
@@ -34,7 +35,13 @@ router.get('/', async (req, res) => {
 
 // find corresponding station by id
 const stationFinder = async (req:express.Request, _res:express.Response, next: express.NextFunction) => {
-    req.station = await Station.findByPk(req.params.id)
+    try {
+        req.station = await Station.findByPk(req.params.id)        
+    } catch (error:unknown) {
+        if (error instanceof Error) {
+            req.error = error.name
+        }
+    }
     next()
 }
 
@@ -42,7 +49,9 @@ const stationFinder = async (req:express.Request, _res:express.Response, next: e
 router.get('/:id', stationFinder, async (req:express.Request, res) => {
     if (req.station) {
         res.json(req.station)
-    } else {
+    } else if (req.error === 'SequelizeDatabaseError') {
+        res.status(400).send({ error: 'Invalid input syntax for id, please give station id for type integer'})
+    } else if (!req.station) {
         res.status(404).send({ error: `Error.. Station not found with id: ${req.params.id}`})
     }
 })
