@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts",
     "seed:stations": "ts-node seeds/seedStations.ts",
     "seed:journeys": "ts-node seeds/seedJourneys.ts",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --runInBand"
   },
   "author": "Juho Poutiainen",
   "license": "ISC",
