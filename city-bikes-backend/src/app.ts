@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
 
@@ -6,6 +7,7 @@ const journeysRouter = require('./controllers/journeys')
 const stationsRouter = require('./controllers/stations')
 
 app.use(express.json())
+app.use(cors())
 
 // routes
 app.use('/api/journeys', journeysRouter)
