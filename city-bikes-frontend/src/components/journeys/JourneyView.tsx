@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getJourneys } from '../../services/journeys'
 import { IJourney, JourneyViewOptions } from '../../types'
+import JourneyList from './JourneyList'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // -> add functionality for page and limit
@@ -24,12 +25,16 @@ const JourneyView = () => {
 
     }, [page, limit])
 
-    console.log(journeys)
-    console.log(error)
+    console.log(journeys, 'journeys')
+    console.log(error, 'error')
 
     return (
         <div>
             <h1>Journeys</h1>
+            <div>
+                <JourneyList journeys={journeys} />
+                { error && <div>Error: {error}</div> }
+            </div>
         </div>
     )
 }
