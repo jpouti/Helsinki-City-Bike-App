@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
+import Header from './components/Header'
 import JourneyView from './components/journeys/JourneyView';
 import StationsView from './components/stations/StationsView';
 
@@ -15,9 +16,7 @@ const Home = () => {
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                Helsinki City Bikes
-            </header>
+            <Header />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/journeys' element={<JourneyView />} />

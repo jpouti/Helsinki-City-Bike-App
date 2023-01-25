@@ -1,5 +1,18 @@
 ### TODO
 
+#### Header
+
+- styles
+
+#### Home Page
+
+- implement home page
+
+
+#### Error Page
+
+- implement error page
+
 #### Journeys
 
 - JourneyView:
