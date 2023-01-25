@@ -1,6 +1,16 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
 import JourneyView from './components/journeys/JourneyView';
 import StationsView from './components/stations/StationsView';
+
+const Home = () => {
+    return (
+        <div>
+            <h1>Helsinki City Bikes</h1>
+        </div>
+    )
+}
 
 function App() {
     return (
@@ -8,8 +18,11 @@ function App() {
             <header className="App-header">
                 Helsinki City Bikes
             </header>
-            <JourneyView />
-            <StationsView />
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/journeys' element={<JourneyView />} />
+                <Route path='/stations' element={<StationsView />} />
+            </Routes>
         </div>
     );
 }
