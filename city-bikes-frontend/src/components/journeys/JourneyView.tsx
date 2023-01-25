@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { getJourneys } from '../../services/journeys'
 import { IJourney, JourneyViewOptions } from '../../types'
 import JourneyList from './JourneyList'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // -> add functionality for page and limit
@@ -29,13 +32,13 @@ const JourneyView = () => {
     console.log(error, 'error')
 
     return (
-        <div>
-            <h1>Journeys</h1>
-            <div>
+        <Container fixed>
+            <Typography variant='h2'>Journeys</Typography>
+            <Box>
                 <JourneyList journeys={journeys} />
                 { error && <div>Error: {error}</div> }
-            </div>
-        </div>
+            </Box>
+        </Container>
     )
 }
 

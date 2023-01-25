@@ -1,5 +1,11 @@
 import React from 'react';
 import { IJourney } from '../../types';
+import Card from '@mui/material/Card'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 
 type JourneyItemProps = {
     journey: IJourney
@@ -27,20 +33,24 @@ const JourneyItem: React.FC<JourneyItemProps> = ({ journey }) => {
     const departureTime = convertTimeStamp(journey.departure)
     const returnTime = convertTimeStamp(journey.return)
 
-    const distance = journey.distance / 1000
-    const duration = journey.duration / 60
+    // convert m to km
+    let distance = journey.distance / 1000
+    // convert s to min
+    let duration = journey.duration / 60
+
+    // round floats to 2 decimal
+    distance = parseFloat(distance.toFixed(2))
+    duration = parseFloat(duration.toFixed(2))
 
     return (
-        <div>
-            <div>{departureTime.date}</div>
-            <div>{returnTime.time}</div>
-            <div>{journey.departureStationId}</div>
-            <div>{journey.departureStationName}</div>
-            <div>{journey.returnStationId}</div>
-            <div>{journey.returnStationName}</div>
-            <div>{distance} km</div>
-            <div>{duration} min</div>
-        </div>
+        <TableRow>
+            <TableCell>{departureTime.date} - {departureTime.time}</TableCell>
+            <TableCell>{returnTime.date} - {returnTime.time}</TableCell>
+            <TableCell>{journey.departureStationName}</TableCell>
+            <TableCell>{journey.returnStationName}</TableCell>
+            <TableCell>{distance} km</TableCell>
+            <TableCell>{duration} min</TableCell>
+        </TableRow>
     )
 }
 
@@ -49,6 +59,7 @@ type JourneyListProps = {
 }
 
 // List of journeys
+// TODO ---- xs screeen view
 const JourneyList: React.FC<JourneyListProps> = ({ journeys }) => {
     console.log(journeys, 'journeylist')
 
@@ -57,14 +68,25 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeys }) => {
     }
 
     return (
-        <div>
-            JourneyList
-            <div>
-                {journeys.map((journey, index) => {
-                    return <JourneyItem journey={journey} key={index} />
-                })}
-            </div>
-        </div>
+        <Card>
+            <TableContainer>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Departure</TableCell>
+                        <TableCell>Return</TableCell>
+                        <TableCell>Departure Station Name</TableCell>
+                        <TableCell>Return Station Name</TableCell>
+                        <TableCell>Distance (km)</TableCell>
+                        <TableCell>Duration (min)</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {journeys.map((journey, index) => {
+                        return <JourneyItem journey={journey} key={index} />
+                    })}
+                </TableBody>
+            </TableContainer>
+        </Card>
     )
 }
 
