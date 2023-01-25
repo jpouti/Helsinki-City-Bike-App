@@ -1,5 +1,6 @@
 import React from 'react'
 import JourneyView from './components/journeys/JourneyView';
+import StationsView from './components/stations/StationsView';
 
 function App() {
     return (
@@ -8,6 +9,7 @@ function App() {
                 Helsinki City Bikes
             </header>
             <JourneyView />
+            <StationsView />
         </div>
     );
 }
