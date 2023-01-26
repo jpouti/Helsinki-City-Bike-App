@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import { IStation } from '../../types';
 import Card from '@mui/material/Card'
 import TableBody from '@mui/material/TableBody'
@@ -14,12 +15,19 @@ type StationItemProps = {
 
 // Displaying a station in StationsList
 const StationItem: React.FC<StationItemProps> = ({ station }) => {
+    const navigate = useNavigate()
     if (!station) {
         return <TableRow><TableCell>null</TableCell></TableRow>
     }
 
+    // navigate to Single Station view
+    const navigateToSingleStation = () => {
+        console.log(`navigating to view ${station.id}`)
+        navigate(`/stations/${station.id}`)
+    }
+
     return (
-        <TableRow>
+        <TableRow hover={true} onClick={() => navigateToSingleStation()}>
             <TableCell>{station.name}</TableCell>
             <TableCell>{station.osoite}</TableCell>
             <TableCell>{station.kapasiteetti}</TableCell>

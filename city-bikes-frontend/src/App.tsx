@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import JourneyView from './components/journeys/JourneyView';
+import SingleStation from './components/stations/SingleStation';
 import StationsView from './components/stations/StationsView';
 
 const Home = () => {
@@ -21,6 +22,7 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/journeys' element={<JourneyView />} />
                 <Route path='/stations' element={<StationsView />} />
+                <Route path='/stations/:id' element={<SingleStation />} />
             </Routes>
         </div>
     );
