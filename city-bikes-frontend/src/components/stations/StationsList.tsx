@@ -13,7 +13,7 @@ type StationItemProps = {
 }
 
 // Displaying a station in StationsList
-const JourneyItem: React.FC<StationItemProps> = ({ station }) => {
+const StationItem: React.FC<StationItemProps> = ({ station }) => {
     if (!station) {
         return <TableRow><TableCell>null</TableCell></TableRow>
     }
@@ -53,7 +53,7 @@ const StationsList: React.FC<StationListProps> = ({ stations }) => {
                     </TableHead>
                     <TableBody>
                         {stations.map((station, index) => {
-                            return <JourneyItem station={station} key={index} />
+                            return <StationItem station={station} key={index} />
                         })}
                     </TableBody>
                 </Table>
