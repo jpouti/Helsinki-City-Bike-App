@@ -25,9 +25,11 @@
 #### Stations
 
 - Create views:
-    - Stations list
     - Single Station
 
 - StationsView:
     - functionality for page & limit
     - Error notifications
+
+- StationsList:
+    - add city?

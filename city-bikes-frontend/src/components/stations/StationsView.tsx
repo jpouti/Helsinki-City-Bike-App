@@ -4,6 +4,7 @@ import { IStation, StationViewOptions } from '../../types'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import StationsList from './StationsList'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // -> add functionality for page and limit
@@ -34,8 +35,10 @@ const StationsView = () => {
         <Container fixed>
             <Typography variant='h2'>Stations</Typography>
             <Box>
-                Stations...
-                { error && <div>Error: {error}</div> }
+                <StationsList stations={stations} />
+                <Box>
+                    { error && <div>Error: {error}</div> }
+                </Box>
             </Box>
         </Container>
     )
