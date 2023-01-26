@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Table from '@mui/material/Table'
 
 type StationItemProps = {
     station: IStation
@@ -42,18 +43,20 @@ const StationsList: React.FC<StationListProps> = ({ stations }) => {
     return (
         <Card>
             <TableContainer>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Address</TableCell>
-                        <TableCell>Capacity</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {stations.map((station, index) => {
-                        return <JourneyItem station={station} key={index} />
-                    })}
-                </TableBody>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Address</TableCell>
+                            <TableCell>Capacity</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {stations.map((station, index) => {
+                            return <JourneyItem station={station} key={index} />
+                        })}
+                    </TableBody>
+                </Table>
             </TableContainer>
         </Card>
     )

@@ -6,6 +6,7 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import Table from '@mui/material/Table'
 
 type JourneyItemProps = {
     journey: IJourney
@@ -70,21 +71,23 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeys }) => {
     return (
         <Card>
             <TableContainer>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Departure</TableCell>
-                        <TableCell>Return</TableCell>
-                        <TableCell>Departure Station Name</TableCell>
-                        <TableCell>Return Station Name</TableCell>
-                        <TableCell>Distance (km)</TableCell>
-                        <TableCell>Duration (min)</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {journeys.map((journey, index) => {
-                        return <JourneyItem journey={journey} key={index} />
-                    })}
-                </TableBody>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Departure</TableCell>
+                            <TableCell>Return</TableCell>
+                            <TableCell>Departure Station Name</TableCell>
+                            <TableCell>Return Station Name</TableCell>
+                            <TableCell>Distance (km)</TableCell>
+                            <TableCell>Duration (min)</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {journeys.map((journey, index) => {
+                            return <JourneyItem journey={journey} key={index} />
+                        })}
+                    </TableBody>
+                </Table>
             </TableContainer>
         </Card>
     )
