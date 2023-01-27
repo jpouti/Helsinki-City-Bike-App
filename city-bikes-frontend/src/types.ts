@@ -33,6 +33,11 @@ export interface IStation {
     yCoord: number
 }
 
+export interface StationInfo extends IStation {
+    n_departures: number
+    n_returns: number
+}
+
 export interface StationViewOptions {
     page: number | null
     limit: number | null

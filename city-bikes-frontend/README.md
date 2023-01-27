@@ -24,12 +24,13 @@
 
 #### Stations
 
-- Create views:
-    - Single Station
-
 - StationsView:
     - functionality for page & limit
     - Error notifications
 
 - StationsList:
     - add city?
+
+- Single Station:
+    - Error notifications
+    - styles

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { IStation, StationViewOptions } from '../types'
+import { IStation, StationInfo, StationViewOptions } from '../types'
 
 // stations api
 const baseUrl = 'http://localhost:3001/api/stations'
@@ -34,9 +34,9 @@ export const getStations = async (options: StationViewOptions):Promise<IStation[
 
 
 // get single station according to station id
-export const getSingleStation = async (id: number):Promise<IStation | string> => {
+export const getSingleStation = async (id: number):Promise<StationInfo | string> => {
     try {
-        const request = await axios.get<IStation>(`${baseUrl}/${id}`)
+        const request = await axios.get<StationInfo>(`${baseUrl}/${id}`)
         return request.data
     } catch (error:unknown) {
         let errorMessage = 'Error while fetching single station data.'
