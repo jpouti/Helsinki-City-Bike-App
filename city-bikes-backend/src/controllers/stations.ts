@@ -4,10 +4,16 @@ import { IStation } from "../models/station"
 const router = express.Router()
 
 const Station = require('../models/station')
+const Journey = require('../models/journey')
+
+interface StationInfo extends IStation {
+    n_departures?: number // number of journeys starting from the station
+    n_returns?: number // number of journeys ending for the station
+} 
 
 declare module 'express' {
     export interface Request {
-        station?: IStation
+        station?: StationInfo
         error?: string
     }
 }
@@ -36,7 +42,7 @@ router.get('/', async (req, res) => {
 // find corresponding station by id
 const stationFinder = async (req:express.Request, _res:express.Response, next: express.NextFunction) => {
     try {
-        req.station = await Station.findByPk(req.params.id)        
+        req.station = await Station.findByPk(req.params.id)
     } catch (error:unknown) {
         if (error instanceof Error) {
             req.error = error.name
@@ -48,7 +54,13 @@ const stationFinder = async (req:express.Request, _res:express.Response, next: e
 // get single station
 router.get('/:id', stationFinder, async (req:express.Request, res) => {
     if (req.station) {
-        res.json(req.station)
+        const station = JSON.parse(JSON.stringify(req.station))
+        const journeyStarting = await Journey.count({ col: 'departure_station_id', where: { departureStationId: req.station.id } })
+        const journeysEnding = await Journey.count({ col: 'return_station_id', where: { returnStationId: req.station.id } })
+
+        station.n_departures = journeyStarting
+        station.n_returns = journeysEnding
+        res.json(station)
     } else if (req.error === 'SequelizeDatabaseError') {
         res.status(400).send({ error: 'Invalid input syntax for id, please give station id for type integer'})
     } else if (!req.station) {
