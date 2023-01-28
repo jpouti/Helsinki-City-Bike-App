@@ -1,5 +1,6 @@
 import React from 'react';
 import { IJourney } from '../../types';
+import TablePaginationActions from '../TablePaginationActions';
 import Card from '@mui/material/Card'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -7,6 +8,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Table from '@mui/material/Table'
+import TableFooter from '@mui/material/TableFooter'
+import TablePagination from '@mui/material/TablePagination'
 
 type JourneyItemProps = {
     journey: IJourney
@@ -57,11 +60,21 @@ const JourneyItem: React.FC<JourneyItemProps> = ({ journey }) => {
 
 type JourneyListProps = {
     journeys: IJourney[]
+    page: number
+    limit: number
+    handlePageChange: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => void
+    handleLimitChange: (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void
+
 }
 
 // List of journeys
 // TODO ---- xs screeen view
-const JourneyList: React.FC<JourneyListProps> = ({ journeys }) => {
+const JourneyList: React.FC<JourneyListProps> = ({ journeys, page, limit, handlePageChange, handleLimitChange }) => {
     console.log(journeys, 'journeylist')
 
     if (!journeys) {
@@ -87,6 +100,26 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeys }) => {
                             return <JourneyItem journey={journey} key={index} />
                         })}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25]}
+                                count={100000}
+                                rowsPerPage={limit}
+                                page={page}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'Rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handlePageChange}
+                                onRowsPerPageChange={handleLimitChange}
+                                ActionsComponent={TablePaginationActions}
+                            />
+                                
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
         </Card>

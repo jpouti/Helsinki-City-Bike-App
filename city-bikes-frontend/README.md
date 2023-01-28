@@ -16,7 +16,7 @@
 #### Journeys
 
 - JourneyView:
-    - functionality for page & limit
+    - functionality for page & limit - done -> make page compatible with api & table, add total count
     - Error notifications
 
 - JourneyList:
