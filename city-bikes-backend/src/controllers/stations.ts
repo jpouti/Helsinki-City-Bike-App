@@ -27,13 +27,17 @@ router.get('/', async (req, res) => {
     const offset = limit * page
     const conditions = {}
     try {
-        const result = await Station.findAll({
+        const stations = await Station.findAll({
             order: [['id', 'ASC']],
             offset: offset,
             limit: limit,
             where: conditions,
         })
-        res.json(result)
+        // count of all the stations
+        const count = await Station.count({
+            where: conditions,
+        })
+        res.json({ stations, count })
 
     } catch (error:any) {
         res.status(400).json({ error: 'Error while getting stations..: ' + error.message})

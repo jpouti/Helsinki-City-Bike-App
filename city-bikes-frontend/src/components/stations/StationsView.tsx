@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { getStations } from '../../services/stations'
-import { IStation, StationViewOptions } from '../../types'
+import { StationsData, StationViewOptions } from '../../types'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import StationsList from './StationsList'
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// -> add functionality for page and limit
 const StationsView = () => {
-    const [stations, setStations] = useState<IStation[]>([])
-    const [page, setPage] = useState<number | null>(null)
-    const [limit, setLimit] = useState<number | null>(3) // change the default
+    const [stationsData, setStationsData] = useState<StationsData | null>()
+    const [page, setPage] = useState<number>(0)
+    const [limit, setLimit] = useState<number>(5)
     const [error, setError] = useState<string | null>(null)
     
     useEffect(() => {
@@ -21,21 +19,38 @@ const StationsView = () => {
             if (typeof response === 'string') {
                 setError(response)
             } else {
-                setStations(response)
+                setStationsData(response)
             }
         }
         fetchStations()
 
     }, [page, limit])
 
-    console.log(stations, 'stations')
+    // handle page change
+    const handlePageChange = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage)
+    }
+    
+    
+    // handle limit change -> limit change will start from first page
+    const handleLimitChange = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        setLimit(parseInt(event.target.value))
+        setPage(0)
+    }
+
+    console.log(stationsData, 'stations')
     console.log(error, 'error')
 
     return (
         <Container fixed>
             <Typography variant='h2'>Stations</Typography>
             <Box>
-                <StationsList stations={stations} />
+                {stationsData && <StationsList stationsData={stationsData} page={page} limit={limit} handlePageChange={handlePageChange} handleLimitChange={handleLimitChange} />}
                 <Box>
                     { error && <div>Error: {error}</div> }
                 </Box>

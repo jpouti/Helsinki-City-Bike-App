@@ -25,11 +25,11 @@
 #### Stations
 
 - StationsView:
-    - functionality for page & limit
     - Error notifications
 
 - StationsList:
     - add city?
+    - table footer & options styles
 
 - Single Station:
     - Error notifications

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
-import { IStation } from '../../types';
+import { IStation, StationsData } from '../../types';
+import TablePaginationActions from '../TablePaginationActions';
 import Card from '@mui/material/Card'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,6 +9,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Table from '@mui/material/Table'
+import TableFooter from '@mui/material/TableFooter'
+import TablePagination from '@mui/material/TablePagination'
 
 type StationItemProps = {
     station: IStation
@@ -36,15 +39,24 @@ const StationItem: React.FC<StationItemProps> = ({ station }) => {
 }
 
 type StationListProps = {
-    stations: IStation[]
+    stationsData: StationsData
+    page: number
+    limit: number
+    handlePageChange: (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => void
+    handleLimitChange: (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => void
 }
 
 // List of stations
 // TODO ---- xs screeen view
-const StationsList: React.FC<StationListProps> = ({ stations }) => {
-    console.log(stations, 'stationslist')
+const StationsList: React.FC<StationListProps> = ({ stationsData, page, limit, handlePageChange, handleLimitChange }) => {
+    console.log(stationsData, 'stations data')
 
-    if (!stations) {
+    if (!stationsData) {
         return null
     }
 
@@ -60,10 +72,29 @@ const StationsList: React.FC<StationListProps> = ({ stations }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {stations.map((station, index) => {
+                        {stationsData.stations.map((station, index) => {
                             return <StationItem station={station} key={index} />
                         })}
                     </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                                rowsPerPageOptions={[5, 10, 25]}
+                                count={stationsData.count}
+                                rowsPerPage={limit}
+                                page={page}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'Rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handlePageChange}
+                                onRowsPerPageChange={handleLimitChange}
+                                ActionsComponent={TablePaginationActions}
+                            />     
+                        </TableRow>
+                    </TableFooter>
                 </Table>
             </TableContainer>
         </Card>

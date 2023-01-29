@@ -23,6 +23,11 @@ export interface JourneyViewOptions {
 
 /* Stations view types */
 
+export interface StationsData {
+    stations: IStation[]
+    count: number
+}
+
 export interface IStation {
     id: number
     nimi: string
