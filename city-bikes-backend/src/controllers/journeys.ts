@@ -8,14 +8,16 @@ const Journey = require('../models/journey')
 // default view/order -> latest bike returns
 router.get('/', async (req, res) => {
 
-    const page = parseInt(req.query.page as string) || 1
+    const page = parseInt(req.query.page as string) || 0
     const limit = parseInt(req.query.limit as string) || 10
+    // first page 0 offset, otherwise page - 1
+    const offset = page === 0 ? 0 : limit * (page - 1)
     const conditions = {}
     try {
         const result = await Journey.findAll({
             attributes: { exclude: ['id'] },
             order: [['return', 'DESC']],
-            offset: limit * (page - 1),
+            offset: offset,
             limit: limit,
             where: conditions,
         })
