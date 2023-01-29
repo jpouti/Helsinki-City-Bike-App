@@ -59,7 +59,10 @@ const JourneyItem: React.FC<JourneyItemProps> = ({ journey }) => {
 }
 
 type JourneyListProps = {
-    journeys: IJourney[]
+    journeysData: {
+        journeys: IJourney[]
+        count: number
+    }
     page: number
     limit: number
     handlePageChange: (
@@ -74,12 +77,13 @@ type JourneyListProps = {
 
 // List of journeys
 // TODO ---- xs screeen view
-const JourneyList: React.FC<JourneyListProps> = ({ journeys, page, limit, handlePageChange, handleLimitChange }) => {
-    console.log(journeys, 'journeylist')
+const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, handlePageChange, handleLimitChange }) => {
 
-    if (!journeys) {
+    if (!journeysData) {
         return null
     }
+
+    console.log(journeysData, 'journeys data')
 
     return (
         <Card>
@@ -96,7 +100,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeys, page, limit, handle
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {journeys.map((journey, index) => {
+                        {journeysData.journeys.map((journey, index) => {
                             return <JourneyItem journey={journey} key={index} />
                         })}
                     </TableBody>
@@ -104,7 +108,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeys, page, limit, handle
                         <TableRow>
                             <TablePagination
                                 rowsPerPageOptions={[5, 10, 25]}
-                                count={100000}
+                                count={journeysData.count}
                                 rowsPerPage={limit}
                                 page={page}
                                 SelectProps={{

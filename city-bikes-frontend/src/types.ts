@@ -1,5 +1,10 @@
 /* Journey view types */
 
+export interface JourneysData {
+    journeys: IJourney[]
+    count: number
+}
+
 export interface IJourney {
     departure: Date
     return: Date

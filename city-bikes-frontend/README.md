@@ -16,11 +16,11 @@
 #### Journeys
 
 - JourneyView:
-    - functionality for page & limit - done -> make page compatible with api & table, add total count
     - Error notifications
 
 - JourneyList:
     - xs screen view for journeys
+    - table footer & options styles
 
 #### Stations
 
