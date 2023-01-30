@@ -39,34 +39,38 @@ const TablePaginationActions = (props: TablePaginationActionProps) => {
 
     return (
         <Box>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label='First page'
-            >
-                <FirstPageIcon />
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label='Previous page'
-            >
-                <KeyboardArrowLeft />
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label='Next page'
-            >
-                <KeyboardArrowRight />
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label='Last page'
-            >
-                <LastPageIcon />
-            </IconButton>
+            <Box sx={{ display: 'flex' }}>
+                <IconButton
+                    onClick={handleFirstPageButtonClick}
+                    disabled={page === 0}
+                    aria-label='First page'
+                >
+                    <FirstPageIcon />
+                </IconButton>
+                <IconButton
+                    onClick={handleBackButtonClick}
+                    disabled={page === 0}
+                    aria-label='Previous page'
+                >
+                    <KeyboardArrowLeft />
+                </IconButton>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+                <IconButton
+                    onClick={handleNextButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label='Next page'
+                >
+                    <KeyboardArrowRight />
+                </IconButton>
+                <IconButton
+                    onClick={handleLastPageButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label='Last page'
+                >
+                    <LastPageIcon />
+                </IconButton>
+            </Box>
         </Box>
     )
 }
