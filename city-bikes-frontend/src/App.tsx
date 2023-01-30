@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import JourneyView from './components/journeys/JourneyView';
+import NotFound from './components/NotFound';
 import SingleStation from './components/stations/SingleStation';
 import StationsView from './components/stations/StationsView';
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path='/journeys' element={<JourneyView />} />
                 <Route path='/stations' element={<StationsView />} />
                 <Route path='/stations/:id' element={<SingleStation />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </div>
     );

@@ -8,11 +8,6 @@
 
 - implement home page
 
-
-#### Error Page
-
-- implement error page
-
 #### Journeys
 
 - JourneyList:
