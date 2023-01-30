@@ -24,7 +24,7 @@ export const getStations = async (options: StationViewOptions):Promise<StationsD
     } catch (error:unknown) {
         let errorMessage = 'Error while fetching stations data.'
         if (axios.isAxiosError(error) && error.response) {
-            errorMessage = ' Error: ' + error.response.data.message
+            errorMessage = ' Error: ' + error.response.data.error
         }
         return errorMessage
     }
@@ -41,7 +41,7 @@ export const getSingleStation = async (id: number):Promise<StationInfo | string>
     } catch (error:unknown) {
         let errorMessage = 'Error while fetching single station data.'
         if (axios.isAxiosError(error) && error.response) {
-            errorMessage = ' Error: ' + error.response.data.message
+            errorMessage = error.response.data.error
         }
         return errorMessage
     }

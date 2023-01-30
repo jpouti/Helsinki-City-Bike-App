@@ -6,6 +6,7 @@ import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import ErrorMessage from '../ErrorMessage';
 
 const styles = {
     flexBox: {
@@ -67,6 +68,7 @@ const SingleStation = () => {
                 </Card>
             </Card>
             }
+            {error && <ErrorMessage error={error} />}
         </Container>
     )
 }

@@ -5,6 +5,7 @@ import JourneyList from './JourneyList'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import ErrorMessage from '../ErrorMessage'
 
 const JourneyView = () => {
     const [journeysData, setJourneysData] = useState<JourneysData | null>()
@@ -52,7 +53,7 @@ const JourneyView = () => {
             <Typography variant='h2'>Journeys</Typography>
             <Box>
                 {journeysData && <JourneyList journeysData={journeysData} page={page} limit={limit} handlePageChange={handlePageChange} handleLimitChange={handleLimitChange} />}
-                { error && <div>Error: {error}</div> }
+                { error && <ErrorMessage error={error} />}
             </Box>
         </Container>
     )

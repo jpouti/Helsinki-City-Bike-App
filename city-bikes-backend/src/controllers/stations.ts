@@ -69,7 +69,7 @@ router.get('/:id', stationFinder, async (req:express.Request, res) => {
     } else if (req.error === 'SequelizeDatabaseError') {
         res.status(400).send({ error: 'Invalid input syntax for id, please give station id for type integer'})
     } else if (!req.station) {
-        res.status(404).send({ error: `Error.. Station not found with id: ${req.params.id}`})
+        res.status(404).send({ error: `Error.. Station not found. Invalid station id: ${req.params.id}`})
     }
 })
 

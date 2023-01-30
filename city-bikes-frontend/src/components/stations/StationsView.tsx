@@ -5,6 +5,7 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import StationsList from './StationsList'
+import ErrorMessage from '../ErrorMessage'
 
 const StationsView = () => {
     const [stationsData, setStationsData] = useState<StationsData | null>()
@@ -51,9 +52,7 @@ const StationsView = () => {
             <Typography variant='h2'>Stations</Typography>
             <Box>
                 {stationsData && <StationsList stationsData={stationsData} page={page} limit={limit} handlePageChange={handlePageChange} handleLimitChange={handleLimitChange} />}
-                <Box>
-                    { error && <div>Error: {error}</div> }
-                </Box>
+                { error && <ErrorMessage error={error} /> }
             </Box>
         </Container>
     )

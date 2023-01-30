@@ -78,7 +78,7 @@ type JourneyListProps = {
 // List of journeys
 // TODO ---- xs screeen view
 const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, handlePageChange, handleLimitChange }) => {
-
+    
     if (!journeysData) {
         return null
     }
@@ -120,8 +120,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, ha
                                 onPageChange={handlePageChange}
                                 onRowsPerPageChange={handleLimitChange}
                                 ActionsComponent={TablePaginationActions}
-                            />
-                                
+                            />     
                         </TableRow>
                     </TableFooter>
                 </Table>
