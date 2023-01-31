@@ -16,9 +16,9 @@ describe('Station list tests', () => {
             .expect('Content-Type', /json/)
             .expect(200)
     })
-    test('Returns with status code 200 on query containg valid limit and page', async () => {
+    test('Returns with status code 200 on query containg valid limit & page and search', async () => {
         await api
-            .get('/api/journeys?page=1&limit=2')
+            .get('/api/journeys?page=1&limit=2&search=tie')
             .expect('Content-Type', /json/)
             .expect(200)
     })
