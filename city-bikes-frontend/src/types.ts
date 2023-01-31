@@ -19,6 +19,7 @@ export interface IJourney {
 export interface JourneyViewOptions {
     page: number | null
     limit: number | null
+    search: string | null
 }
 
 /* Stations view types */

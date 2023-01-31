@@ -4,22 +4,38 @@ import { JourneysData, JourneyViewOptions } from '../types'
 // journeys api
 const baseUrl = 'http://localhost:3001/api/journeys'
 
-// get journeys according to page and limit
+// get journeys according to page & limit and optional search keyword (substring of departure / return stations)
 // returns journeys with default page and limit if paremeters not provided
 export const getJourneys = async (options: JourneyViewOptions):Promise<JourneysData | string> => {
     try {
         // journeys with default options
         if (!options.page && !options.limit) {
-            const request = await axios.get<JourneysData>(baseUrl)
-            return request.data
+            if (!options.search) {
+                const request = await axios.get<JourneysData>(baseUrl)
+                return request.data
+            } else {
+                const request = await axios.get<JourneysData>(`${baseUrl}?search=${options.search}`)
+                return request.data
+            }
         // journeys with default page and provided limit
         } else if (!options.page && options.limit) {
-            const request = await axios.get<JourneysData>(`${baseUrl}?limit=${options.limit}`)
-            return request.data
+            if (!options.search) {
+                const request = await axios.get<JourneysData>(`${baseUrl}?limit=${options.limit}`)
+                return request.data
+            } else {
+                const request = await axios.get<JourneysData>(`${baseUrl}?limit=${options.limit}&search=${options.search}`)
+                return request.data
+            }
+
         // journeys with provided page and limit
         } else if (options.page && options.limit) {
-            const request = await axios.get<JourneysData>(`${baseUrl}?page=${options.page}&limit=${options.limit}`)
-            return request.data
+            if (!options.search) {
+                const request = await axios.get<JourneysData>(`${baseUrl}?page=${options.page}&limit=${options.limit}`)
+                return request.data
+            } else {
+                const request = await axios.get<JourneysData>(`${baseUrl}?page=${options.page}&limit=${options.limit}&search=${options.search}`)
+                return request.data
+            }
         }
     } catch (error:unknown) {
         console.log(error)
