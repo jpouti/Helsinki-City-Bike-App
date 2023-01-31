@@ -1,6 +1,7 @@
 import express from "express"
 
 const router = express.Router()
+const { Op } = require('sequelize')
 
 const Journey = require('../models/journey')
 
@@ -11,7 +12,44 @@ router.get('/', async (req, res) => {
     const page = parseInt(req.query.page as string) || 0
     const limit = parseInt(req.query.limit as string) || 10
     const offset = limit * page
-    const conditions = {}
+    let conditions = {}
+
+    // search keyword for departure / return stations in journeys
+    if (req.query.search) {
+
+        // Capitalize the first letter and rest as lower case
+        let search = (req.query.search as string).toLowerCase()
+        search = search.charAt(0).toUpperCase() + search.slice(1)
+
+        // if substring exists either start of the station name with capitalized letter
+        // or any other position of the station name with lower case
+        conditions = {
+            [Op.or]: [
+                {
+                    departureStationName: {
+                        [Op.substring]: search,
+                    }
+                },
+                {
+                    departureStationName: {
+                        [Op.substring]: (req.query.search as string).toLowerCase(),
+                    }
+                },
+                {
+                    returnStationName: {
+                        [Op.substring]: search,
+                    }
+                },
+                {
+                    returnStationName: {
+                        [Op.substring]: (req.query.search as string).toLowerCase(),
+                    }
+                },
+            ]
+        }
+    }
+
+    // get journeys from db
     try {
         const journeys = await Journey.findAll({
             attributes: { exclude: ['id'] },

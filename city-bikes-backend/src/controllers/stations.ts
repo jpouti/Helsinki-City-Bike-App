@@ -2,6 +2,7 @@ import * as express from "express"
 import { IStation } from "../models/station"
 
 const router = express.Router()
+const { Op } = require('sequelize')
 
 const Station = require('../models/station')
 const Journey = require('../models/journey')
@@ -25,7 +26,43 @@ router.get('/', async (req, res) => {
     const page = parseInt(req.query.page as string) || 0
     const limit = parseInt(req.query.limit as string) || 10
     const offset = limit * page
-    const conditions = {}
+    let conditions = {}
+
+    // search keyword for station name / station address in Finnish language
+    if (req.query.search) {
+        // Capitalize the first letter and rest as lower case
+        let search = (req.query.search as string).toLowerCase()
+        search = search.charAt(0).toUpperCase() + search.slice(1)
+
+        // if substring exists either start of the station name / address with capitalized letter
+        // or any other position of the station name / address with lower case
+        conditions = {
+            [Op.or]: [
+                {
+                    name: {
+                        [Op.substring]: search,
+                    }
+                },
+                {
+                    name: {
+                        [Op.substring]: (req.query.search as string).toLowerCase(),
+                    }
+                },
+                {
+                    osoite: {
+                        [Op.substring]: search,
+                    }
+                },
+                {
+                    osoite: {
+                        [Op.substring]: (req.query.search as string).toLowerCase(),
+                    }
+                },
+            ]
+        }
+    }
+
+    // get stations from db
     try {
         const stations = await Station.findAll({
             order: [['id', 'ASC']],
