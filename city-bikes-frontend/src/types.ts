@@ -52,4 +52,5 @@ export interface StationInfo extends IStation {
 export interface StationViewOptions {
     page: number | null
     limit: number | null
+    search: string | null
 }
