@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
     const page = parseInt(req.query.page as string) || 0
     const limit = parseInt(req.query.limit as string) || 10
     const offset = limit * page
+    const column = (req.query.column as string) || 'return'
+    const sort = (req.query.sort as string) || 'DESC'
     let conditions = {}
 
     // search keyword for departure / return stations in journeys
@@ -53,7 +55,7 @@ router.get('/', async (req, res) => {
     try {
         const journeys = await Journey.findAll({
             attributes: { exclude: ['id'] },
-            order: [['return', 'DESC']],
+            order: [[column, sort.toUpperCase()]],
             offset: offset,
             limit: limit,
             where: conditions,
@@ -64,7 +66,11 @@ router.get('/', async (req, res) => {
         res.json({journeys, count})
 
     } catch (error:any) {
-        res.status(400).json({ error: 'Error while getting journeys..: ' + error.message})
+        if (error.name === 'SequelizeDatabaseError') {
+            res.status(400).json({ error: 'Invalid query to db: ' + error.message})
+        } else {
+            res.status(400).json({ error: 'Error while getting journeys..: ' + error.message})
+        }
     }
 })
 
