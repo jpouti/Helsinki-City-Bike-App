@@ -20,7 +20,11 @@ export interface JourneyViewOptions {
     page: number | null
     limit: number | null
     search: string | null
+    order: Order
+    orderBy: keyof IJourney
 }
+
+export type Order = 'asc' | 'desc'
 
 /* Stations view types */
 
