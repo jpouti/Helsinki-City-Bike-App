@@ -1,6 +1,7 @@
 import React from 'react';
 import { IJourney, Order } from '../../types';
 import TablePaginationActions from '../TablePaginationActions';
+import JourneyListItem from './JourneyListItem';
 import Card from '@mui/material/Card'
 import Box from '@mui/material/Box'
 import TableBody from '@mui/material/TableBody'
@@ -13,53 +14,6 @@ import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
-
-type JourneyItemProps = {
-    journey: IJourney
-}
-
-// Displaying one journey
-const JourneyItem: React.FC<JourneyItemProps> = ({ journey }) => {
-    if (!journey) {
-        return null
-    }
-
-    // convert time stamp to object with formats date: YYYY-MM-DD, time: HH:mm:ssss
-    const convertTimeStamp = (timestamp:Date) => {
-        const date = timestamp.toString().split('T')
-        const time = date[1].split('.')[0]
-
-        const dateTime = {
-            date: date[0],
-            time,
-        }
-
-        return dateTime
-    }
-
-    const departureTime = convertTimeStamp(journey.departure)
-    const returnTime = convertTimeStamp(journey.return)
-
-    // convert m to km
-    let distance = journey.distance / 1000
-    // convert s to min
-    let duration = journey.duration / 60
-
-    // round floats to 2 decimal
-    distance = parseFloat(distance.toFixed(2))
-    duration = parseFloat(duration.toFixed(2))
-
-    return (
-        <TableRow>
-            <TableCell>{departureTime.date} - {departureTime.time}</TableCell>
-            <TableCell>{returnTime.date} - {returnTime.time}</TableCell>
-            <TableCell>{journey.departureStationName}</TableCell>
-            <TableCell>{journey.returnStationName}</TableCell>
-            <TableCell>{distance} km</TableCell>
-            <TableCell>{duration} min</TableCell>
-        </TableRow>
-    )
-}
 
 interface HeadCell {
     id: keyof IJourney
@@ -162,7 +116,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, or
                     </TableHead>
                     <TableBody>
                         {journeysData.journeys.map((journey, index) => {
-                            return <JourneyItem journey={journey} key={index} />
+                            return <JourneyListItem journey={journey} key={index} />
                         })}
                     </TableBody>
                     <TableFooter>
