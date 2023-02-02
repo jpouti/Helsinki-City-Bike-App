@@ -4,47 +4,47 @@ import { StationsData, StationInfo, StationViewOptions } from '../types'
 // stations api
 const baseUrl = 'http://localhost:3001/api/stations'
 
+// parse url according to options parameters
+const parseUrl = (options: StationViewOptions) => {
+    let url = baseUrl
+
+    // with page
+    if (options.page) {
+        // if the first query on url
+        if (url.length === baseUrl.length) {
+            url += `?page=${options.page}`
+        } else {
+            url += `&page=${options.page}`
+        }
+    }
+
+    // with limit
+    if (options.limit) {
+        if (url.length === baseUrl.length) {
+            url += `?limit=${options.limit}`
+        } else {
+            url += `&limit=${options.limit}`
+        }
+    }
+
+    // with search
+    if (options.search) {
+        if (url.length === baseUrl.length) {
+            url += `?search=${options.search}`
+        } else {
+            url += `&search=${options.search}`
+        }
+    }
+    return url
+}
+
 // get stations according to page & limit and optional search keyword (substring of station name / address in Finnish)
 // returns stations with default page and limit if paremeters not provided
 export const getStations = async (options: StationViewOptions):Promise<StationsData | string> => {
+    const stationsUrl = parseUrl(options)
     try {
-        // stations with default options
-        if (!options.page && !options.limit) {
-            // without search
-            if (!options.search) {
-                const request = await axios.get<StationsData>(baseUrl)
-                return request.data
-            // with search
-            } else {
-                const request = await axios.get<StationsData>(`${baseUrl}?search=${options.search}`)
-                return request.data
-            }
-
-        // stations with default page and provided limit
-        } else if (!options.page && options.limit) {
-            // without search
-            if (!options.search) {
-                const request = await axios.get<StationsData>(`${baseUrl}?limit=${options.limit}`)
-                return request.data
-            // with search
-            } else {
-                const request = await axios.get<StationsData>(`${baseUrl}?limit=${options.limit}&search=${options.search}`)
-                return request.data
-            }
-            
-        // stations with provided page and limit
-        } else if (options.page && options.limit) {
-            // without search
-            if (!options.search) {
-                const request = await axios.get<StationsData>(`${baseUrl}?page=${options.page}&limit=${options.limit}`)
-                return request.data
-            // with search
-            } else {
-                const request = await axios.get<StationsData>(`${baseUrl}?page=${options.page}&limit=${options.limit}&search=${options.search}`)
-                return request.data
-            } 
-        }
-        
+        const request = await axios.get<StationsData>(stationsUrl)
+        return request.data
     } catch (error:unknown) {
         let errorMessage = 'Error while fetching stations data.'
         if (axios.isAxiosError(error) && error.response) {
@@ -52,10 +52,7 @@ export const getStations = async (options: StationViewOptions):Promise<StationsD
         }
         return errorMessage
     }
-
-    return 'Error while fetching stations data.'
 }
-
 
 // get single station according to station id
 export const getSingleStation = async (id: number):Promise<StationInfo | string> => {
