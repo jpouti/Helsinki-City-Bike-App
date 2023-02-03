@@ -14,6 +14,7 @@ import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
 import TableSortLabel from '@mui/material/TableSortLabel'
 import { visuallyHidden } from '@mui/utils'
+import { Typography } from '@mui/material';
 
 interface HeadCell {
     id: keyof IJourney
@@ -75,8 +76,13 @@ type JourneyListProps = {
 // TODO ---- xs screeen view
 const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, order, orderBy, handlePageChange, handleLimitChange, handleRequestSort }) => {
     
-    if (!journeysData) {
-        return null
+    // display message when no journeys found
+    if (journeysData.journeys.length < 1) {
+        return (
+            <Card sx={{ p: 2 }}>
+                <Typography variant='h4' color='red'>Could not find any journeys with current search</Typography>
+            </Card>
+        )
     }
 
     const createSortHandler = (property: keyof IJourney) => (event: React.MouseEvent<unknown>) => {
