@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StationInfo } from '../../types';
 import { useParams } from 'react-router-dom';
 import { getSingleStation } from '../../services/stations';
+import Map from '../Map';
 import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import Box from '@mui/material/Box'
@@ -66,6 +67,9 @@ const SingleStation = () => {
                         <Typography>{station.n_returns}</Typography>
                     </Box>
                 </Card>
+                <Box sx={{ marginBottom: 10, marginTop: 4 }}>
+                    <Map position={[station.yCoord, station.xCoord]} popUp={['Station: ' + station.name, 'Address: ' + station.osoite]} />
+                </Box>
             </Card>
             }
             {error && <ErrorMessage error={error} />}

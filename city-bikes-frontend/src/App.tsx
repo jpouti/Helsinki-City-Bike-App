@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div>
             <h1>Helsinki City Bikes</h1>
-            <Map />
+            <Map position={[60.2, 24.9]} />
         </div>
     )
 }
