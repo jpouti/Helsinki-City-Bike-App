@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
 import JourneyView from './components/journeys/JourneyView';
+import Map from './components/Map';
 import NotFound from './components/NotFound';
 import SingleStation from './components/stations/SingleStation';
 import StationsView from './components/stations/StationsView';
@@ -11,6 +12,7 @@ const Home = () => {
     return (
         <div>
             <h1>Helsinki City Bikes</h1>
+            <Map />
         </div>
     )
 }
