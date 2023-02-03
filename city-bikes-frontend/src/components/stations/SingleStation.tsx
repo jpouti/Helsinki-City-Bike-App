@@ -68,7 +68,8 @@ const SingleStation = () => {
                     </Box>
                 </Card>
                 <Box sx={{ marginBottom: 10, marginTop: 4 }}>
-                    <Map position={[station.yCoord, station.xCoord]} popUp={['Station: ' + station.name, 'Address: ' + station.osoite]} />
+                    <Typography variant='h5'>{station.name} location: </Typography>
+                    <Map position={[station.yCoord, station.xCoord]} marker={[station.yCoord, station.xCoord]} popUp={['Station: ' + station.name, 'Address: ' + station.osoite]} />
                 </Box>
             </Card>
             }

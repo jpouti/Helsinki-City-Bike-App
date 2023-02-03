@@ -13,7 +13,7 @@ const Home = () => {
     return (
         <div>
             <h1>Helsinki City Bikes</h1>
-            <Map position={[60.2, 24.9]} />
+            <Map position={[60.2, 24.9]} zoom={11} />
         </div>
     )
 }
