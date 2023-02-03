@@ -60,6 +60,7 @@ const TablePaginationActions = (props: TablePaginationActionProps) => {
                     onClick={handleNextButtonClick}
                     disabled={page >= Math.ceil(count / rowsPerPage) - 1}
                     aria-label='Next page'
+                    id='next-page-btn'
                 >
                     <KeyboardArrowRight />
                 </IconButton>

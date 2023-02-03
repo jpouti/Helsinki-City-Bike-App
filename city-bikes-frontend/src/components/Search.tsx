@@ -21,7 +21,7 @@ const Search:React.FC<SearchProps> = ({ handleSearchChange, placeholder }) => {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <TextField id='outlined-search' label='Search Field' type='search' placeholder={placeholder} onChange={valueChangeHandler} />
-            <Button onClick={() => handleSearchChange(value)}>Search</Button>
+            <Button id='search-btn' onClick={() => handleSearchChange(value)}>Search</Button>
         </Box>
     )
 }

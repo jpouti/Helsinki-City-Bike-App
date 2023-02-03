@@ -15,9 +15,9 @@ const Header = () => {
                 <Link to={'/'}>
                     <Typography variant='h5'>Home</Typography>
                 </Link>
-                <Link to={'journeys'}>
+                <Link to={'journeys'} id='journeys-link' >
                     <Typography variant='h5'>Journeys</Typography>
-                </Link>    
+                </Link>
                 <Link to={'stations'}>
                     <Typography variant='h5'>Stations</Typography>
                 </Link>

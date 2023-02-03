@@ -88,7 +88,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, or
 
     return (
         <Card>
-            <TableContainer>
+            <TableContainer id='journeys-table'>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -101,6 +101,7 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, or
                                         active={orderBy === headCell.id}
                                         direction={orderBy === headCell.id ? order : 'asc'}
                                         onClick={createSortHandler(headCell.id)}
+                                        id={`${headCell.id}-btn`}
                                     >
                                         {headCell.label}
                                         {orderBy === headCell.id ? (
