@@ -6,11 +6,12 @@
   "scripts": {
     "tsc": "tsc",
     "ts-node": "ts-node",
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "NODE_ENV=development ts-node-dev src/index.ts",
     "lint": "eslint --ext .ts",
     "seed:stations": "ts-node seeds/seedStations.ts",
     "seed:journeys": "ts-node seeds/seedJourneys.ts",
-    "test": "jest --detectOpenHandles"
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "start:test": "NODE_ENV=test ts-node src/index.ts"
   },
   "author": "Juho Poutiainen",
   "license": "ISC",
