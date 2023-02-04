@@ -2,7 +2,7 @@ import axios from 'axios'
 import { StationsData, StationInfo, StationViewOptions } from '../types'
 
 // stations api
-const baseUrl = 'http://localhost:3001/api/stations'
+const baseUrl = 'api/stations'
 
 // parse url according to options parameters
 const parseUrl = (options: StationViewOptions) => {

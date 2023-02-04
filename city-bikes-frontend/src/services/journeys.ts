@@ -2,7 +2,7 @@ import axios from 'axios'
 import { JourneysData, JourneyViewOptions } from '../types'
 
 // journeys api
-const baseUrl = 'http://localhost:3001/api/journeys'
+const baseUrl = '/api/journeys'
 
 // parse url according to options parameters
 const parseUrl = (options: JourneyViewOptions) => {
