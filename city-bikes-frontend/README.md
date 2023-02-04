@@ -12,11 +12,3 @@
 
 - JourneyList:
     - xs screen view for journeys
-
-#### Stations
-
-- StationsList:
-    - add city?
-
-- Single Station:
-    - styles
