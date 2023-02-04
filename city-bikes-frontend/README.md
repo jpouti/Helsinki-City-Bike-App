@@ -4,10 +4,6 @@
 
 - styles
 
-#### Home Page
-
-- implement home page
-
 #### Journeys
 
 - JourneyList:
