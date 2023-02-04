@@ -8,7 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 const Footer = () => {
     
     return (
-        <Container maxWidth={false} sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 4, backgroundColor: '#a1a1aa' }}>
+        <Container maxWidth={false} sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 4, marginTop: 4, backgroundColor: '#a1a1aa' }}>
             <Box>
                 <Typography>City bike journey data is owned by City Bike Finland</Typography>
             </Box>

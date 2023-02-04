@@ -12,14 +12,14 @@ const Header = () => {
                 <Typography variant='h5'>Helsinki City Bikes</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 6, md: 12 } }}>
-                <Link to={'/'}>
-                    <Typography variant='h5'>Home</Typography>
+                <Link to={'/'} style={{ textDecoration: 'none' }}>
+                    <Typography color='black' variant='h5'>Home</Typography>
                 </Link>
-                <Link to={'journeys'} id='journeys-link' >
-                    <Typography variant='h5'>Journeys</Typography>
+                <Link to={'journeys'} id='journeys-link' style={{ textDecoration: 'none' }}>
+                    <Typography color='black' variant='h5'>Journeys</Typography>
                 </Link>
-                <Link to={'stations'}>
-                    <Typography variant='h5'>Stations</Typography>
+                <Link to={'stations'} style={{ textDecoration: 'none' }}>
+                    <Typography color='black' variant='h5' >Stations</Typography>
                 </Link>
             </Box>
         </Container>
