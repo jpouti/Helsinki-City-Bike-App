@@ -51,5 +51,6 @@
     "cypress": "^12.5.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-cypress": "^2.12.1"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }
