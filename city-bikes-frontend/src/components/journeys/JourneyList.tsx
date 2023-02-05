@@ -89,9 +89,6 @@ const JourneyList: React.FC<JourneyListProps> = ({ journeysData, page, limit, or
         handleRequestSort(event, property)
     }
 
-    console.log(journeysData, 'journeys data')
-    console.log(order, 'order journeyLIst')
-
     return (
         <Card>
             <TableContainer id='journeys-table'>

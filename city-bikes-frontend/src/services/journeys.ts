@@ -64,7 +64,7 @@ export const getJourneys = async (options: JourneyViewOptions):Promise<JourneysD
         const request = await axios.get<JourneysData>(journeyUrl)
         return request.data
     } catch (error:unknown) {
-        console.log(error)
+        console.error(error)
         let errorMessage = 'Error while fetching journeys data.'
         if (axios.isAxiosError(error) && error.response) {
             errorMessage = ' Error: ' + error.response.data.error

@@ -37,7 +37,6 @@ const StationsView = () => {
         setPage(newPage)
     }
     
-    
     // handle limit change -> limit change will start from first page
     const handleLimitChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -49,12 +48,8 @@ const StationsView = () => {
     const handleSearchChange = (
         newSearch: string | null,
     ) => {
-        console.log(newSearch, 'search')
         setSearch(newSearch)
     }
-
-    console.log(stationsData, 'stations')
-    console.log(error, 'error')
 
     return (
         <Container fixed>

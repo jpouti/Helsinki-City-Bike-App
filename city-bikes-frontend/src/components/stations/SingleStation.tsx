@@ -56,10 +56,6 @@ const SingleStation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    console.log(station, 'single station')
-    console.log(error, 'error')
-
-
     return (
         <Container>
             {station && 

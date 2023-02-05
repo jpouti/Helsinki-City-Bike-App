@@ -50,7 +50,6 @@ const JourneyView = () => {
     const handleSearchChange = (
         newSearch: string | null,
     ) => {
-        console.log(newSearch, 'search')
         setSearch(newSearch)
     }
 
@@ -63,11 +62,6 @@ const JourneyView = () => {
         setOrder(isAsc ? 'desc' : 'asc')
         setOrderBy(property)
     }
-
-    console.log(journeysData, 'journeys')
-    console.log(error, 'error')
-    console.log(page, 'page')
-    console.log(order, 'order journeyview')
 
     return (
         <Container fixed>

@@ -26,7 +26,6 @@ const StationItem: React.FC<StationItemProps> = ({ station }) => {
 
     // navigate to Single Station view
     const navigateToSingleStation = () => {
-        console.log(`navigating to view ${station.id}`)
         navigate(`/stations/${station.id}`)
     }
 
@@ -55,7 +54,6 @@ type StationListProps = {
 // List of stations
 // TODO ---- xs screeen view
 const StationsList: React.FC<StationListProps> = ({ stationsData, page, limit, handlePageChange, handleLimitChange }) => {
-    console.log(stationsData, 'stations data')
 
     // display message when no journeys found
     if (stationsData.stations.length < 1) {
