@@ -8,7 +8,7 @@ const stationsRouter = require('./controllers/stations')
 
 app.use(express.json())
 app.use(cors())
-app.use(express.static('../city-bikes-frontend/build'))
+app.use(express.static('build'))
 
 // routes
 app.use('/api/journeys', journeysRouter)

@@ -11,7 +11,9 @@
     "seed:stations": "ts-node seeds/seedStations.ts",
     "seed:journeys": "ts-node seeds/seedJourneys.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "start:test": "NODE_ENV=test ts-node src/index.ts"
+    "start:test": "NODE_ENV=test ts-node src/index.ts",
+    "build": "npx tsc",
+    "start": "NODE_ENV=production node build/src/index.js"
   },
   "author": "Juho Poutiainen",
   "license": "ISC",

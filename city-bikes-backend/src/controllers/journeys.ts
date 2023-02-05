@@ -3,7 +3,7 @@ import express from "express"
 const router = express.Router()
 const { Op } = require('sequelize')
 
-const Journey = require('../models/journey')
+const { Journey } = require('../models')
 
 // get journeys on default 10 journeys per page
 // default view/order -> latest bike returns

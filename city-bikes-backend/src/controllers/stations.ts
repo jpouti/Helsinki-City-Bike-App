@@ -4,8 +4,7 @@ import { IStation } from "../models/station"
 const router = express.Router()
 const { Op } = require('sequelize')
 
-const Station = require('../models/station')
-const Journey = require('../models/journey')
+const { Station, Journey } = require('../models/')
 
 interface StationInfo extends IStation {
     n_departures?: number // number of journeys starting from the station

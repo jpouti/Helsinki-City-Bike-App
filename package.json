@@ -4,7 +4,14 @@
   "description": "Solita Dev Academy 2023 pre-assigment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:client": "cd city-bikes-frontend && npm start",
+    "dev:api": "cd city-bikes-backend && npm run dev",
+    "dev": "concurrently --kill-others \"npm run dev:client\" \"npm run dev:api\"",
+    "test:api": "cd city-bikes-backend && npm run test",
+    "build:ui": "rm -rf ../city-bikes-backend/build && cd city-bikes-frontend && npm run build && cp -r build ../city-bikes-backend/ && cd ..",
+    "build:server": "cd city-bikes-backend && npm run build && cd ..",
+    "deploy": "cd city-bikes-backend && flyctl deploy --remote-only",
+    "deploy:full": "npm run build:ui && npm run build:server && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -15,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/jpouti/Helsinki-City-Bike-App/issues"
   },
-  "homepage": "https://github.com/jpouti/Helsinki-City-Bike-App#readme"
+  "homepage": "https://github.com/jpouti/Helsinki-City-Bike-App#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
