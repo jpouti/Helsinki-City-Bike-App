@@ -12,6 +12,7 @@
     "seed:journeys": "ts-node seeds/seedJourneys.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "start:test": "NODE_ENV=test ts-node src/index.ts",
+    "test:db": "ts-node ./tests/testDbConnection",
     "build": "npx tsc",
     "start": "NODE_ENV=production node build/src/index.js"
   },
