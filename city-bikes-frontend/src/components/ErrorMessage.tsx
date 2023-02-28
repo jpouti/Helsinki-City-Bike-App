@@ -8,7 +8,7 @@ type ErrorMessageProps = {
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ error }) => {
     return (
-        <Box>
+        <Box id='error-message' sx={{ p: 2 }}>
             <Typography color={'red'} variant='h5'>{error}</Typography>
         </Box>
     )
