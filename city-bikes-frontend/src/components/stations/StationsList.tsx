@@ -30,7 +30,7 @@ const StationItem: React.FC<StationItemProps> = ({ station }) => {
     }
 
     return (
-        <TableRow hover={true} onClick={() => navigateToSingleStation()}>
+        <TableRow id={station.name} hover={true} onClick={() => navigateToSingleStation()}>
             <TableCell>{station.name}</TableCell>
             <TableCell>{station.osoite}</TableCell>
             <TableCell>{station.kapasiteetti}</TableCell>

@@ -65,7 +65,7 @@ const SingleStation = () => {
                         <Typography variant='h4'>{station.name}</Typography>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             <PlaceIcon color='primary' />
-                            <Typography variant='h6'>{station.osoite}</Typography>
+                            <Typography id='address' variant='h6'>{station.osoite}</Typography>
                         </Box>
                     </Box>
                     <Box sx={{ padding: 2 }}>
@@ -80,12 +80,12 @@ const SingleStation = () => {
                         <Card sx={ styles.statisticsCard }>
                             <StartIcon color='primary'/>
                             <Typography fontWeight={'bold'}>Journeys starting from {station.name}: </Typography>
-                            <Typography fontWeight={'bold'}>{station.n_departures}</Typography>
+                            <Typography id='journeys-starting' fontWeight={'bold'}>{station.n_departures}</Typography>
                         </Card>
                         <Card sx={ styles.statisticsCard }>
                             <ArrowBackIcon color='primary' />
                             <Typography fontWeight={'bold'}>Journeys ending to {station.name}:  </Typography>
-                            <Typography fontWeight={'bold'}>{station.n_returns}</Typography>
+                            <Typography id='journeys-ending' fontWeight={'bold'}>{station.n_returns}</Typography>
                         </Card>
                     </Box>
                 </Box>
