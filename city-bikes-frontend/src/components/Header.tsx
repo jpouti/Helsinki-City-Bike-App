@@ -18,7 +18,7 @@ const Header = () => {
                 <Link to={'journeys'} id='journeys-link' style={{ textDecoration: 'none' }}>
                     <Typography color='black' variant='h5'>Journeys</Typography>
                 </Link>
-                <Link to={'stations'} style={{ textDecoration: 'none' }}>
+                <Link to={'stations'} id='stations-link' style={{ textDecoration: 'none' }}>
                     <Typography color='black' variant='h5' >Stations</Typography>
                 </Link>
             </Box>

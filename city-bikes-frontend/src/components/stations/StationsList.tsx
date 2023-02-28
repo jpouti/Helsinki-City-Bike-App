@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow'
 import Table from '@mui/material/Table'
 import TableFooter from '@mui/material/TableFooter'
 import TablePagination from '@mui/material/TablePagination'
-import Typography from '@mui/material/Typography'
+import ErrorMessage from '../ErrorMessage'
 
 type StationItemProps = {
     station: IStation
@@ -57,16 +57,12 @@ const StationsList: React.FC<StationListProps> = ({ stationsData, page, limit, h
 
     // display message when no journeys found
     if (stationsData.stations.length < 1) {
-        return (
-            <Card sx={{ p: 2 }}>
-                <Typography variant='h4' color='red'>Could not find any stations with current search</Typography>
-            </Card>
-        )
+        return <ErrorMessage error='Could not find any stations with current search' />
     }
 
     return (
         <Card>
-            <TableContainer>
+            <TableContainer id='stations-table'>
                 <Table>
                     <TableHead>
                         <TableRow>
