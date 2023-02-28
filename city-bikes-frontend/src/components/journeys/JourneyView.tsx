@@ -51,6 +51,7 @@ const JourneyView = () => {
         newSearch: string | null,
     ) => {
         setSearch(newSearch)
+        setPage(0)
     }
 
     // handle order & sorting 

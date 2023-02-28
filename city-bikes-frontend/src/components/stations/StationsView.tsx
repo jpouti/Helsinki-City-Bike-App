@@ -49,6 +49,7 @@ const StationsView = () => {
         newSearch: string | null,
     ) => {
         setSearch(newSearch)
+        setPage(0)
     }
 
     return (
