@@ -10,7 +10,6 @@
 /cypress/downloads
 /cypress/videos
 /cypress/screenshots
-/cypress/e2e/journeys.cy.ts
 
 # production
 /build
