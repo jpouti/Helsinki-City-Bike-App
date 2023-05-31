@@ -11,11 +11,11 @@ describe('The Journey Page', () => {
     it('Ordering journeys per column', () => {
         // ordering returning time
         cy.get('#return-btn').click().wait(1000)
-        cy.contains('2021-04-30 - 21:04:34')
+        cy.contains('2021-05-01 - 00:04:34')
 
         // ordering again gives the latest return
         cy.get('#return-btn').click().wait(1000)
-        cy.contains('2021-08-18 - 02:18:33')
+        cy.contains('2021-08-18 - 05:18:33')
     })
     it('succesfully searches journeys with station name', () => {
         cy.get('#outlined-search').type('Marjaniementie')
