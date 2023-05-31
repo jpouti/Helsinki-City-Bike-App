@@ -96,8 +96,8 @@ async function seedJourneyFile(file:String) {
 
         totalCount += 1
         
-        // insert 500 journeys to DB with on each patch
-        if (count % 500 === 0) {
+        // insert 50000 journeys to DB with on each patch
+        if (count % 50000 === 0) {
             pipeline.pause()
             console.log(`${file} --- starting to insert next patch of journeys`)
             try {
