@@ -44,6 +44,4 @@ describe('Single station tests', () => {
 
 })
 
-describe
-
 export {}
